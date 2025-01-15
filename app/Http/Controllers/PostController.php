@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
+use Gate;
 class PostController extends Controller
 {
     public function index(Request $request){
@@ -24,10 +25,11 @@ class PostController extends Controller
     }
 
 
-    public function view($id){
-        //$id=base64_decode($id);
-        
-        $student=Post::findOrFail($id);
-        return view('view',compact('student'));
+    public function view($id)
+    {
+        $post=Post::findOrFail($id);
+        Gate::authorize('view', $post);
+        //dd('success');
+        return view('view',compact('post'));
     }
 }

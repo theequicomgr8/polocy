@@ -11,4 +11,4 @@ Route::post('/login',[AuthController::class,'login'])->name('auth.login.check');
 
 
 Route::get('/dashboard',[PostController::class,'index'])->name('show.post');
-Route::get('/view/{id?}',[PostController::class,'view'])->name('post.view');
+Route::get('/post/{id?}',[PostController::class,'view'])->name('post.view');
