@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 
 use App\Http\Controllers\PostController;
 
+
 Route::get('/',[AuthController::class,'index'])->name('auth.login.form');
 Route::post('/login',[AuthController::class,'login'])->name('auth.login.check');
 
