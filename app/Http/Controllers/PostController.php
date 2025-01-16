@@ -25,11 +25,13 @@ class PostController extends Controller
     }
 
 
-    public function view($id)
+    public function view($id,Request $request)
     {
         $post=Post::findOrFail($id);
+        /*if($request->user()->cannot('view',$post)){
+            abort(403);
+        }*/
         Gate::authorize('view', $post);
-        //dd('success');
         return view('view',compact('post'));
     }
 }

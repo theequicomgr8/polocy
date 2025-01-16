@@ -25,9 +25,15 @@
                     <td>{{ $value->content }}</td>
                     <td>
                         
-                        <!-- some other method for gate end  -->
-                        <a href="{{Route('post.view',[$value->id])}}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                        @can('view',$value)
+                        <!-- if you want that link show only own post the put link here  -->
+                        @endcan
                         
+                        @if(Auth::user()->can('view',$value))
+                        <!-- if you want that link show only own post the put link here  -->
+                        @endif 
+
+                        <a href="{{Route('post.view',[$value->id])}}"><i class="fa fa-eye" aria-hidden="true"></i></a>
                         <a href=""><i class="fa fa-pencil-square" aria-hidden="true"></i>
                         <a href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
                     </td>
